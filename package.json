@@ -1,0 +1,20 @@
+{
+  "name": "web-scrape-api-merge-js",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Course assignment: web scraping + public API integration + merged output (JSON/CSV).",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "scrape": "node index.js --step scrape",
+    "enrich": "node index.js --step enrich",
+    "all": "node index.js --step all"
+  },
+  "dependencies": {
+    "axios": "^1.6.8",
+    "cheerio": "^1.0.0-rc.12",
+    "csv-writer": "^1.6.0",
+    "dotenv": "^16.4.5",
+    "minimist": "^1.2.8"
+  }
+}
