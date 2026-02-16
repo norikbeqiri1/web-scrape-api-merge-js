@@ -1,3 +1,4 @@
+import { encryptJsonFile } from "./security/encryptFile.js";
 import fs from "fs/promises";
 import path from "path";
 import { geocodeCity } from "./geocode.js";
@@ -59,10 +60,16 @@ export async function enrichCitiesWithWeather({ limit = 30, delayMs = 450, forma
   const jsonPath = path.join("data", "enriched_cities_weather.json");
   await fs.writeFile(jsonPath, JSON.stringify(out, null, 2), "utf-8");
 
+  // ✅ ENCRYPT JSON (duhet para return)
+  const encPath = await encryptJsonFile(jsonPath);
+  console.log(`🔐 Encrypted output written to: ${encPath}`);
+
   if (format === "csv" || format === "both") {
     const csvPath = path.join("data", "enriched_cities_weather.csv");
     await writeCsv(csvPath, out);
   }
-
+ 
   return { count: out.length, jsonPath };
 }
+
+
